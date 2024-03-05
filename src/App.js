@@ -1,23 +1,14 @@
-import logo from './logo.svg';
-import './App.css';
+import './linnad.css';
+import Linn from './Linn';
+import londonPilt from './pildid/london_pictures_iii_by_jenisei_d1z6dkf.jpg'
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="container">
+      <h1>Minu lemmiklinnad</h1>
+      <Linn name="Pariis" riik="Prantsusmaa" />
+      <Linn name="London" riik="Inglismaa" pilt={londonPilt} />
+      <Linn name="Elva" riik="Eesti" />
     </div>
   );
 }
