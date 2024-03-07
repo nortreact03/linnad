@@ -33,5 +33,4 @@ const tervitused = nimed.map(nimi => 'Salutatsioonid - ' + nimi )
 const htmlTervitused = nimed.map(tervitus1)
 
 console.log(nimed)
-console.log(tervitused)
 console.log(htmlTervitused)
