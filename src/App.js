@@ -4,19 +4,13 @@ import londonPilt from "./pildid/london_pictures_iii_by_jenisei_d1z6dkf.jpg";
 import pariisPilt from "./pildid/paris__7_by_joeclaffeyjr_dfgnddo.png";
 import berliinPilt from "./pildid/evening_in_gendarmenmarkt_by_rikitza_d7mm0zy.jpg";
 import LinnadeLoetelu from "./LinnadeLoetelu";
+import { useState } from "react";
 
 const pariis = {
 	nimi: "Pariis",
 	riik: "Prantsusmaa",
 	pilt: pariisPilt,
 };
-
-const linnad = [
-	pariis,
-	{ nimi: "London", riik: "Inglismaa", pilt: londonPilt },
-	{ nimi: "Berliin", riik: "Saksamaa", pilt: berliinPilt },
-	{ nimi: "Elva", riik: "Eesti", pilt: londonPilt },
-];
 
 /* esialgne App kus iga linn algväärtustatakse eraldi
 function App() {
@@ -32,13 +26,30 @@ function App() {
 
 */
 
+const lisaLinn = () => {
+	console.log("linna lisamine!");
+};
+
 function App() {
+	const [kylastusiPariisis, setKylastusiPariisis] = useState(0);
+	const [kylastusiLondonis, setKylastusiLondonis] = useState(0);
+	const [kylastusiBerliinis, setKylastusiBerliinis] = useState(0);
+	const [kylastusiElvas, setKylastusiElvas] = useState(0);
+	const linnad = [
+		{ nimi: "Pariis", riik: "Prantsusmaa", pilt: pariisPilt, kylastusi: kylastusiPariisis, setKylastusi: setKylastusiPariisis },
+		{ nimi: "London", riik: "Inglismaa", pilt: londonPilt, kylastusi: kylastusiLondonis, setKylastusi: setKylastusiLondonis },
+		{ nimi: "Berliin", riik: "Saksamaa", pilt: berliinPilt, kylastusi: kylastusiBerliinis, setKylastusi: setKylastusiBerliinis },
+		{ nimi: "Elva", riik: "Eesti", pilt: londonPilt, kylastusi: kylastusiElvas, setKylastusi: setKylastusiElvas },
+	];
+	const [aktiivneLinn, setAktiivneLinn] = useState(0);
+
 	return (
 		<div className="container">
-      <LinnadeLoetelu linnad={linnad} />
+			<LinnadeLoetelu linnad={linnad} setAktiivneLinn={setAktiivneLinn} />
 			<div>
 				<div>Linnad Euroopas</div>
-				{linnad.map((linn) => {
+				<button onClick={lisaLinn}>Lisa linn</button>
+				{/* 				{linnad.map((linn) => {
 					return (
 						<Linn
 							name={linn.nimi}
@@ -46,7 +57,14 @@ function App() {
 							pilt={linn.pilt}
 						/>
 					);
-				})}
+				})} */}
+				<Linn
+					name={linnad[aktiivneLinn].nimi}
+					riik={linnad[aktiivneLinn].riik}
+					pilt={linnad[aktiivneLinn].pilt}
+					kylastusi={linnad[aktiivneLinn].kylastusi}
+					setKylastusi={linnad[aktiivneLinn].setKylastusi}
+				/>
 			</div>
 		</div>
 	);
